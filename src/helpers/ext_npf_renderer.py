@@ -111,6 +111,8 @@ class NPFFormatter(npf_renderer.format.Formatter):
         self.post_id = post_id
 
     def _linkify_images(self, element):
+        if not isinstance(element, dominate.tags.html_tag):
+            return element
         if isinstance(element, dominate.tags.img):
             return dominate.tags.a(element, href=element.src)
 
