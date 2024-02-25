@@ -11,15 +11,16 @@ blogs = sanic.Blueprint("blogs", url_prefix="/<blog:([a-z\d]{1}[a-z\d-]{0,30}[a-
 
 
 async def render_blog_post(app, blog, post, request_poll_data = False):
-        return await sanic_ext.render(
-            "blog/blog_post.jinja",
-            context={
-                "app": app,
-                "blog": blog,
-                "element": post,
-                "request_poll_data" : request_poll_data
-            }
-        )
+    return await sanic_ext.render(
+        "blog/blog_post.jinja",
+        context={
+            "app": app,
+            "blog": blog,
+            "element": post,
+            "tumblr_url": post.post_url,
+            "request_poll_data": request_poll_data
+        }
+    )
 
 
 @blogs.get("/")
@@ -39,6 +40,7 @@ async def _blog_posts(request: sanic.Request, blog: str):
         context={
             "app": request.app,
             "blog": blog,
+            "tumblr_url": blog.blog_info.url,
         }
     )
 
@@ -61,6 +63,7 @@ async def _blog_tags(request: sanic.Request, blog: str, tag: str):
             "app": request.app,
             "blog": blog,
             "tag": tag,
+            "tumblr_url": f"{blog.blog_info.url.removesuffix('/')}/tagged/{urllib.parse.quote(tag)}",
         }
     )
 

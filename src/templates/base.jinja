@@ -44,7 +44,10 @@
                 </a>
             </div>
             <div class="right-section">
-                <a href="https://www.tumblr.com{{request.path}}">
+                {%- if tumblr_url is not defined -%}
+                    {%- set tumblr_url = "https://www.tumblr.com" + request.path -%}
+                {%- endif -%}
+                <a href="{{tumblr_url}}">
                     <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 320 512" role="img" aria-label="View page on Tumblr">
                         <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                         <title>View page on Tumblr</title>
