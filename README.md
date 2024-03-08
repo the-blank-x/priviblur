@@ -1,3 +1,7 @@
+This is a personal fork of [Priviblur](https://github.com/syeopite/priviblur), original readme below:
+
+<hr/>
+
 <div align="center"> 
   <h1> Priviblur </h1>
   <blockquote> <h4> Inspired by projects like <a href="https://github.com/iv-org/invidious"> Invidious</a></h4> </blockquote>
